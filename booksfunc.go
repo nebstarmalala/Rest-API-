@@ -26,7 +26,13 @@ func getBook(w http.ResponseWriter, r *http.Request){
 }
 
 func createBook(w http.ResponseWriter, r *http.Request){
-	
+	w.Header().Set("Content-type", "application/json")
+
+	var book Book
+	_ = json.NewDecoder(r.Body).Decode(book)
+	books = append(books, book)
+
+	json.NewEncoder(w).Encode(book)
 }
 
 func updateBook(w http.ResponseWriter, r *http.Request){
