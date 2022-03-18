@@ -7,12 +7,12 @@ import (
 )
 
 func getBooks(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(books)
 }
 
 func getBook(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 
 	for _, item := range books{
@@ -26,10 +26,10 @@ func getBook(w http.ResponseWriter, r *http.Request){
 }
 
 func createBook(w http.ResponseWriter, r *http.Request){
-	w.Header().Set("Content-type", "application/json")
+	w.Header().Set("Content-Type", "application/json")
 
 	var book Book
-	_ = json.NewDecoder(r.Body).Decode(book)
+	_ = json.NewDecoder(r.Body).Decode(&book)
 	books = append(books, book)
 
 	json.NewEncoder(w).Encode(book)
